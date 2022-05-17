@@ -18,8 +18,22 @@ class PostController extends Controller
         return view('admin.posts.create');
     }
 
-    public function store(){
-        # code
-        ddd(\request()->all());
+    public function store(Request $request){
+        $input = $request->all();
+        $this->validate($request, [
+           'title'=>'required|max:255',
+            'post_image'=>'mimes:png,jpg,jpeg',
+            'body'=>'required'
+        ]);
+
+//        dd($input);
+        if($file = $request->file('post_image')){
+//            $name = $file->getClientOriginalName();
+//            $file->store('images');
+            $input['post_image'] = $file->store('images');
+        }
+
+        \Auth::user()->posts()->create($input);
+        return back();
     }
 }
