@@ -3,7 +3,7 @@
     @section('content')
         <h1>All Posts</h1>
 
-        <x-admin-posts-table>
+        <x-admin-posts-table :posts="$posts">
 
         </x-admin-posts-table>
 
