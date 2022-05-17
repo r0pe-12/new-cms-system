@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     //
+
+    public function index(){
+        # code
+        return view('admin.posts.index');
+    }
+
     public function show(Post $post){
         # code
         return view('blog-post', ['post'=>$post]);
@@ -36,4 +42,5 @@ class PostController extends Controller
         \Auth::user()->posts()->create($input);
         return back();
     }
+
 }
