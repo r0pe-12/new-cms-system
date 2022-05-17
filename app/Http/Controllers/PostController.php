@@ -12,4 +12,14 @@ class PostController extends Controller
         # code
         return view('blog-post', ['post'=>$post]);
     }
+
+    public function create(){
+        # code
+        return view('admin.posts.create');
+    }
+
+    public function store(){
+        # code
+        ddd(\request()->all());
+    }
 }
