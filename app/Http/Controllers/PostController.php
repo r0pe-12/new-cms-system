@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -29,7 +30,7 @@ class PostController extends Controller
         $input = $request->all();
         $this->validate($request, [
            'title'=>'required|max:255',
-            'post_image'=>'mimes:png,jpg,jpeg',
+            'post_image'=>'mimes:png,jpg,jpeg,url',
             'body'=>'required'
         ]);
 
