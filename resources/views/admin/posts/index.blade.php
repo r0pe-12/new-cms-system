@@ -1,7 +1,18 @@
 <x-admin-master>
 
     @section('content')
-        <h1>All Posts</h1>
+
+    @if(session('post-deleted'))
+            <div class="alert alert-danger">
+                {{session('post-deleted')}}
+            </div>
+        @elseif(session('post-created'))
+            <div class="alert alert-success">
+                {{session('post-created')}}
+            </div>
+        @else
+            <h1>All Posts</h1>
+    @endif
 
         <x-admin-posts-table :posts="$posts">
 

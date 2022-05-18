@@ -27,6 +27,7 @@ class PostController extends Controller
     }
 
     public function store(Request $request){
+
         $input = $request->all();
         $this->validate($request, [
            'title'=>'required|max:255',
@@ -34,14 +35,19 @@ class PostController extends Controller
             'body'=>'required'
         ]);
 
-//        dd($input);
         if($file = $request->file('post_image')){
-//            $name = $file->getClientOriginalName();
-//            $file->store('images');
             $input['post_image'] = $file->store('images');
         }
 
         \Auth::user()->posts()->create($input);
+        session()->flash('post-created', 'Post ' . '\'' . $request['title'] . '\'' . ' was created');
+        return redirect()->route('post.index');
+    }
+
+    public function destroy(Post $post){
+        # code
+        $post->delete();
+        session()->flash('post-deleted', "Post '$post->title' was deleted");
         return back();
     }
 
