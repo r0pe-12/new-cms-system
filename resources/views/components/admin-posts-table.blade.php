@@ -13,6 +13,7 @@
                     <th>Created At</th>
                     <th>Updated At</th>
                     <th>Created by User</th>
+                    <th>DELETE</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,6 +30,13 @@
                         <td>{{$post->created_at->diffForHumans()}}</td>
                         <td>{{$post->updated_at->diffForHumans()}}</td>
                         <td>{{$post->user->name}}</td>
+                        <td>
+                            <form method="post" action="{{route('post.destroy', $post->id)}}" enctype="multipart/form-data">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">DELETE</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
                 <tfoot>
@@ -39,6 +47,7 @@
                         <th>Created At</th>
                         <th>Updated At</th>
                         <th>Created by User</th>
+                        <th>DELETE</th>
                     </tr>
                 </tfoot>
                 </tbody>

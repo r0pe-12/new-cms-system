@@ -23,8 +23,13 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
 
+//    Displaying create form
     Route::get('/admin/posts/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
+//    Displaying all posts
     Route::get('/admin/posts', [\App\Http\Controllers\PostController::class, 'index'])->name('post.index');
+//    creating posts
     Route::post('/admin/posts', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store');
+//    deleting post
+    Route::delete('/admin/posts/{post}/destroy', [\App\Http\Controllers\PostController::class, 'destroy'])->name('post.destroy');
 
 });
