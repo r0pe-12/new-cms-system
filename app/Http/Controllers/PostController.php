@@ -51,4 +51,22 @@ class PostController extends Controller
         return back();
     }
 
+    public function edit(Post $post){
+        # code
+        return view('admin.posts.edit', ['post'=>$post]);
+    }
+
+    public function update(Post $post, Request $request){
+        # code
+        $input = $request->all();
+        $this->validate($request, [
+
+        ]);
+        if ($file = $request->file('post_image')){
+            $input['post_image']=$file->store('images');
+        }
+        $post->update($input);
+        return redirect()->route('post.index');
+    }
+
 }
