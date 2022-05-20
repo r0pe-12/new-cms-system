@@ -20,7 +20,7 @@
                 @foreach($posts as $post)
                     <tr>
                         <td>{{$post->id}}</td>
-                        <td>{{$post->title}}</td>
+                        <td><a href="{{route('post.edit', $post)}}">{{$post->title}}</a></td>
 {{--                        <td><a href="{{$post->post_image}}" target="_blank">Image</a></td>--}}
                         <td>
                             <a href="{{$post->post_image}}" target="_blank">
