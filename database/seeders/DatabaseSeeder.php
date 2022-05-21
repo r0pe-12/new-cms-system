@@ -15,11 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         \App\Models\User::factory(10)->create()->each(function ($user){
-             $user->posts()->save(Post::factory()->make());
-         });
+//         \App\Models\User::factory(100)->create()->each(function ($user){
+//             $user->posts()->save(Post::factory()->make());
+//         });
 
-//        Post::factory(1)->create();
+        Post::factory(50)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
