@@ -9,24 +9,29 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    //
 
+
+//    home page
+//    show all posts
     public function index(){
         # code
         $posts = Post::all();
         return view('admin.posts.index', ['posts'=>$posts]);
     }
 
+//    show single post
     public function show(Post $post){
         # code
         return view('blog-post', ['post'=>$post]);
     }
 
+//    display create post form
     public function create(){
         # code
         return view('admin.posts.create');
     }
 
+//    store post from form data
     public function store(Request $request){
 
         $input = $request->all();
@@ -45,6 +50,7 @@ class PostController extends Controller
         return redirect()->route('post.index');
     }
 
+//    delete post
     public function destroy(Post $post){
         # code
         $post->delete();
@@ -52,11 +58,13 @@ class PostController extends Controller
         return back();
     }
 
+//    show form for updating post
     public function edit(Post $post){
         # code
         return view('admin.posts.edit', ['post'=>$post]);
     }
 
+//    update form from post data
     public function update(Post $post, Request $request){
         # code
         $input = $request->all();
@@ -74,5 +82,7 @@ class PostController extends Controller
         session()->flash('post-updated', 'Post ' . '\'' . $request['title'] . '\'' . ' was updated');
         return redirect()->route('post.index');
     }
+
+
 
 }
