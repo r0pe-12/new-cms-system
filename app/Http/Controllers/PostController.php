@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Auth;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Http\Request;
 
@@ -60,12 +61,17 @@ class PostController extends Controller
         # code
         $input = $request->all();
         $this->validate($request, [
-
+            'title'=>'required|max:255',
+            'post_image'=>'mimes:png,jpg,jpeg,url',
+            'body'=>'required'
         ]);
         if ($file = $request->file('post_image')){
             $input['post_image']=$file->store('images');
         }
+//        $input['user_id']=Auth::user()->id;
+//        dd($input);
         $post->update($input);
+        session()->flash('post-updated', 'Post ' . '\'' . $request['title'] . '\'' . ' was updated');
         return redirect()->route('post.index');
     }
 

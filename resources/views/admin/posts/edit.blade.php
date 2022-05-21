@@ -3,6 +3,14 @@
 
         <h1>Edit Post</h1>
 
+        @if($errors->any())
+            <div class="alert alert-danger">
+                    @foreach($errors->all() as $error)
+                        {{$error}}
+                    @endforeach
+            </div>
+        @endif
+
         <form method="post" action="{{route('post.update', $post)}}" enctype="multipart/form-data">
             @csrf
             @method('PATCH')

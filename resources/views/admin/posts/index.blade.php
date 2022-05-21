@@ -10,6 +10,10 @@
             <div class="alert alert-success">
                 {{session('post-created')}}
             </div>
+        @elseif(session('post-updated'))
+            <div class="alert alert-success">
+                {{session('post-updated')}}
+            </div>
         @else
             <h1>All Posts</h1>
     @endif
