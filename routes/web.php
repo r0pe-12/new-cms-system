@@ -30,9 +30,9 @@ Route::middleware('auth')->group(function (){
 //    creating posts
     Route::post('/admin/posts', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store');
 //    deleting post
-    Route::delete('/admin/posts/{post}/destroy', [\App\Http\Controllers\PostController::class, 'destroy'])->name('post.destroy');
+    Route::delete('/admin/posts/{post}/destroy', [\App\Http\Controllers\PostController::class, 'destroy'])->middleware('can:view,post')->name('post.destroy');
 //    displaying update post view
-    Route::get('/admin/posts/{post}/edit', [\App\Http\Controllers\PostController::class, 'edit'])->name('post.edit');
+    Route::get('/admin/posts/{post}/edit', [\App\Http\Controllers\PostController::class, 'edit'])->middleware('can:view,post')->name('post.edit');
 //    updating post
     Route::patch('/admin/posts/{post}/update', [\App\Http\Controllers\PostController::class, 'update'])->name('post.update');
 

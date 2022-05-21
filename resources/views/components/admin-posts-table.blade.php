@@ -31,11 +31,13 @@
                         <td>{{$post->updated_at->diffForHumans()}}</td>
                         <td>{{$post->user->name}}</td>
                         <td>
-                            <form method="post" action="{{route('post.destroy', $post->id)}}" enctype="multipart/form-data">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">DELETE</button>
-                            </form>
+                            @can('view', $post)
+                                <form method="post" action="{{route('post.destroy', $post->id)}}" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">DELETE</button>
+                                </form>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

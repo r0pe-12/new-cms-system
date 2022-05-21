@@ -33,6 +33,7 @@ class PostController extends Controller
 
 //    store post from form data
     public function store(Request $request){
+        $this->authorize('create', Post::class);
 
         $input = $request->all();
         $this->validate($request, [
@@ -61,12 +62,14 @@ class PostController extends Controller
 //    show form for updating post
     public function edit(Post $post){
         # code
+//        $this->authorize('view', $post);
         return view('admin.posts.edit', ['post'=>$post]);
     }
 
 //    update form from post data
     public function update(Post $post, Request $request){
         # code
+        ($this->authorize('update', $post));
         $input = $request->all();
         $this->validate($request, [
             'title'=>'required|max:255',
