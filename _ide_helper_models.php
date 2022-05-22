@@ -12,6 +12,17 @@
 
 namespace App\Models{
 /**
+ * App\Models\Permission
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Permission query()
+ */
+	class Permission extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Post
  *
  * @property int $id
@@ -35,6 +46,17 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereUserId($value)
  */
 	class Post extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Role
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Role newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Role newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Role query()
+ */
+	class Role extends \Eloquent {}
 }
 
 namespace App\Models{
