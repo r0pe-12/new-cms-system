@@ -23,6 +23,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'avatar',
     ];
 
     /**
@@ -51,6 +52,17 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($password);
     }
 
+//    avatar accessor
+
+    public function getAvatarAttribute($value){
+        # code
+        if (strpos($value, 'http://') !== FALSE || strpos($value, 'https://') !== FALSE){
+            return $value;
+        }else {
+            return asset('storage/' . $value);
+        }
+    }
+
     public function posts(){
         # code
         return $this->hasMany(Post::class);
@@ -75,4 +87,5 @@ class User extends Authenticatable
         }
         return false;
     }
+
 }
