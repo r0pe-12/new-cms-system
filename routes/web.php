@@ -19,7 +19,7 @@ Auth::routes();
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/post/{post}', [\App\Http\Controllers\PostController::class, 'show'])->name('post');
 
-Route::middleware('auth')->group(function (){
+Route::middleware(['auth', 'web'])->group(function (){
 
     Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
 
@@ -40,5 +40,10 @@ Route::middleware('auth')->group(function (){
     Route::get('admin/user/{user}/profile', [\App\Http\Controllers\UserController::class, 'show'])->name('user.profile.show');
 //    update user profile
     Route::put('admin/user/{user}/profile/update', [\App\Http\Controllers\UserController::class, 'update'])->name('user.profile.update');
+
+//    displaying all users
+    Route::get('/admin/users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+//    deleting user
+    Route::delete('/admin/users/{user}/destroy', [\App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy');
 
 });
