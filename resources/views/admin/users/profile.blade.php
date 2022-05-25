@@ -4,6 +4,11 @@
 
         <h1>User Profile for: {{$user->name}}</h1>
 
+        @if(session('user-updated'))
+            <div class="alert alert-success">
+                {{ session('user-updated') }}
+            </div>
+        @endif
         <div class="row">
             <div class="col-sm-6">
                 <form method="post" action="{{route('user.profile.update', $user)}}" enctype="multipart/form-data">

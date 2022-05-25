@@ -27,7 +27,7 @@
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Users</h6>
                 </div>
 
                 <div class="card-body">
@@ -56,11 +56,7 @@
                                     <td>{{$user->created_at->diffForHumans()}}</td>
                                     <td>{{$user->updated_at->diffForHumans()}}</td>
                                     <td>
-                                        <form method="post" action="{{route('user.destroy', $user)}}" enctype="multipart/form-data">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">DELETE</button>
-                                        </form>
+                                        <a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal">DELETE</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -88,6 +84,28 @@
                 {{$users->links()}}
             </div>
         </div>
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete {{ $user->username }}</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body alert alert-danger">This action is irreversible</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+
+                            <form method="post" action="{{route('user.destroy', $user)}}" enctype="multipart/form-data">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">DELETE</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
     @endsection
 
     @section('scripts')

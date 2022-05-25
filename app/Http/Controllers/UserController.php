@@ -42,6 +42,7 @@ class UserController extends Controller
             $input['avatar'] = $request->file('avatar')->store('images');
         }
         $user->update($input);
+        session()->flash('user-updated', 'Successfully updated user info');
         return back();
         }
 
