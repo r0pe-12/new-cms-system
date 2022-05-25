@@ -49,7 +49,7 @@
                             @foreach($users as $user)
                                 <tr>
                                     <td>{{$user->id}}</td>
-                                    <td>{{$user->username}}</td>
+                                    <td><a href="{{route('user.profile.show', $user)}}">{{$user->username}}</a></td>
                                     <td>{{$user->name}}</td>
                                     <td><a href="{{$user->avatar}}"><img src="{{$user->avatar}}" class="img-profile rounded-3" width="50px"></a></td>
                                     <td><a href="mailto:{{$user->email}}">{{$user->email}}</a></td>

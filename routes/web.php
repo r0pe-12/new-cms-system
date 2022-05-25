@@ -37,7 +37,7 @@ Route::middleware(['auth', 'web'])->group(function (){
     Route::patch('/admin/posts/{post}/update', [\App\Http\Controllers\PostController::class, 'update'])->name('post.update');
 
 //    display user
-    Route::get('admin/user/{user}/profile', [\App\Http\Controllers\UserController::class, 'show'])->name('user.profile.show');
+    Route::get('admin/user/{user}/profile', [\App\Http\Controllers\UserController::class, 'show'])->name('user.profile.show')->middleware('can:view,user');
 //    update user profile
     Route::put('admin/user/{user}/profile/update', [\App\Http\Controllers\UserController::class, 'update'])->name('user.profile.update');
 

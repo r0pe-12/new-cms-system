@@ -2,7 +2,7 @@
 
     @section('content')
 
-        <h1>User Profile for: {{$user->name}}</h1>
+        <h1>User Profile for : {{$user->name}}</h1>
 
         @if(session('user-updated'))
             <div class="alert alert-success">

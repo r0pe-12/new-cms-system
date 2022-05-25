@@ -18,8 +18,7 @@ class UserController extends Controller
 
     public function show(User $user){
         # code
-        $model = $user;
-        $this->authorize('update', $model);
+//        dd($this->authorize('view', $user));
         return view('admin.users.profile', ['user'=>$user]);
     }
 
