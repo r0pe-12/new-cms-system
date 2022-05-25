@@ -12,6 +12,7 @@ class UserController extends Controller
     public function index(){
         # code
         $users = User::paginate(10);
+//        $users = User::all();
         return view('admin.users.index', ['users'=>$users]);
     }
 
@@ -47,9 +48,9 @@ class UserController extends Controller
 //        deleting a user
     public function destroy(User $user){
         # code
-        session()->flash('user-deleted', 'User was deleted successfully');
-        dd(session('user-deleted'));
-//        $user->delete();
+        $user->delete();
+        session()->flash('user-deleted', 'User ' . $user->username . ' was deleted successfully');
+//        dd(session('user-deleted'));
 //        dd(session());
         return back();
     }

@@ -2,7 +2,6 @@
 
     @section('content')
 
-        {{var_dump(session('user-deleted'))}}
 
         @if(session('user-deleted'))
             <div class="alert alert-danger">
@@ -20,11 +19,11 @@
             <h1>All Users</h1>
         @endif
 
-            <div class="d-flex">
-                <div class="mx-auto">
-                    {{$users->links()}}
-                </div>
-            </div>
+{{--            <div class="d-flex">--}}
+{{--                <div class="mx-auto">--}}
+{{--                    {{$users->links()}}--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
