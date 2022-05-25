@@ -1,6 +1,6 @@
 {{--@extends('layouts.app')--}}
 
-<x-home-master>
+<x-home.home-master>
 
     @section('content')
 
@@ -32,4 +32,4 @@
 
     @endsection
 
-</x-home-master>
+</x-home.home-master>
