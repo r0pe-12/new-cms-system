@@ -41,9 +41,12 @@ Route::middleware(['auth', 'web'])->group(function (){
 //    update user profile
     Route::put('admin/user/{user}/profile/update', [\App\Http\Controllers\UserController::class, 'update'])->name('user.profile.update');
 
-//    displaying all users
-    Route::get('/admin/users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
-//    deleting user
-    Route::delete('/admin/users/{user}/destroy', [\App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy');
+
+        Route::middleware('role:admin')->group(function (){
+    //    displaying all users
+        Route::get('/admin/users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+    //    deleting user
+        Route::delete('/admin/users/{user}/destroy', [\App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy');
+        });
 
 });
