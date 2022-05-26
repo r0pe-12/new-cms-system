@@ -61,9 +61,11 @@
         </x-admin.left-navbar.admin-sidebar-posts-links>
 
         @if(Auth::user()->hasRole('admin'))
+
             <x-admin.left-navbar.admin-sidebar-users-links>
 
             </x-admin.left-navbar.admin-sidebar-users-links>
+
         @endif
 
       <!-- Nav Item - Utilities Collapse Menu -->

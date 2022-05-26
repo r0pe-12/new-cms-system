@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Auth::routes();
 
 Route::get('/post/{post}', [\App\Http\Controllers\PostController::class, 'show'])->name('post');
 

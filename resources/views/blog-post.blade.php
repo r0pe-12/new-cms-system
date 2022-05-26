@@ -1,4 +1,4 @@
-<x-home-master>
+<x-home.home-master>
     @section('content')
 {{--        <div class="col-lg-8">--}}
 
@@ -78,4 +78,4 @@
 
 {{--        </div>--}}
     @endsection
-</x-home-master>
+</x-home.home-master>

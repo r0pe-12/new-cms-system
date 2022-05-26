@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Auth::routes();
 
-Route::middleware('auth')->group(function (){
+Route::middleware('auth')->prefix('admin')->group(function (){
 
     //    display user
     Route::get('/user/{user}/profile', [\App\Http\Controllers\UserController::class, 'show'])->name('user.profile.show')->middleware('can:view,user');
