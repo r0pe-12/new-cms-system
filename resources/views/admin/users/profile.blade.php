@@ -83,6 +83,7 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
+                                    <th>Options</th>
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Slug</th>
@@ -93,6 +94,7 @@
                                 <tbody>
                                     @foreach($roles as $role)
                                         <tr>
+                                            <td><input type="checkbox" {{$user->hasRole($role->slug) ? 'checked' : ''}}></td>
                                             <td>{{$role->id}}</td>
                                             <td>{{$role->name}}</td>
                                             <td>{{$role->slug}}</td>
@@ -112,6 +114,7 @@
                                     @endforeach
                                 <tfoot>
                                 <tr>
+                                    <th>Options</th>
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Slug</th>
