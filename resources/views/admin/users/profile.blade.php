@@ -8,6 +8,14 @@
             <div class="alert alert-success">
                 {{ session('user-updated') }}
             </div>
+        @elseif(session('user-role-attached'))
+            <div class="alert alert-success">
+                {{ session('user-role-attached') }}
+            </div>
+        @elseif(session('user-role-detached'))
+            <div class="alert alert-success">
+                {{ session('user-role-detached') }}
+            </div>
         @endif
         <div class="row">
             <div class="col-sm-6">
@@ -98,19 +106,50 @@
                                             <td>{{$role->id}}</td>
                                             <td>{{$role->name}}</td>
                                             <td>{{$role->slug}}</td>
+
                                             <td>
-                                                <form method="post" action="" enctype="multipart/form-data">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-primary">Attach</button>
-                                                </form>
+                                                @if(Auth::user()->hasRole('admin'))
+                                                        <form method="post" action="{{route('user.role.attach', [$user, $role])}}" enctype="multipart/form-data">
+                                                            @method('PUT')
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-primary"
+                                                    @if($user->hasRole($role->slug))
+                                                        disabled
+                                                    @endif
+                                                            >Attach</button>
+                                                        </form>
+                                                @endif
                                             </td>
+
                                             <td>
-                                                <form method="post" action="" enctype="multipart/form-data">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger">Detach</button>
-                                                </form>
+                                                    <a href="#" data-toggle="modal" data-target="#detachModal-{{ $user->id . '-' . $role->name }}" class="{{ $user->hasRole($role->slug)? 'btn': 'btn disabled' }}">
+                                                        <button class="btn btn-danger" {{ $user->hasRole($role->slug)?: 'disabled' }}>Detach</button>
+                                                    </a>
                                             </td>
                                         </tr>
+{{--                                        MODAL ????--}}
+                                        <div class="modal fade" id="detachModal-{{ $user->id . '-' . $role->name }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to detach role '{{ $role->name }}' from {{ $user->name }}</h5>
+                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body alert alert-danger">This action is not reversible</div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+
+                                                        <form method="post" action="{{route('user.role.detach', [$user, $role])}}" enctype="multipart/form-data">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit" class="btn btn-danger">DETACH</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 <tfoot>
                                 <tr>
@@ -127,12 +166,6 @@
                         </div>
                     </div>
                 </div>
-                {{--laravel paginator--}}
-{{--                <div class="d-flex">--}}
-{{--                    <div class="mx-auto">--}}
-{{--                        {{->links()}}--}}
-{{--                    </div>--}}
-{{--                </div>--}}
             </div>
         </div>
     @endsection
