@@ -56,15 +56,12 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-        <x-admin.left-navbar.admin-sidebar-posts-links>
-
-        </x-admin.left-navbar.admin-sidebar-posts-links>
+        <x-admin.left-navbar.posts-links></x-admin.left-navbar.posts-links>
 
         @if(Auth::user()->hasRole('admin'))
 
-            <x-admin.left-navbar.admin-sidebar-users-links>
-
-            </x-admin.left-navbar.admin-sidebar-users-links>
+            <x-admin.left-navbar.users-links></x-admin.left-navbar.users-links>
+            <x-admin.left-navbar.authorization-links></x-admin.left-navbar.authorization-links>
 
         @endif
 
