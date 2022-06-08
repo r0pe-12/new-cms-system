@@ -27,5 +27,11 @@ Route::middleware('auth')->prefix('admin')->group(function (){
     //    updating role
     Route::patch('/roles/{role}/update', [\App\Http\Controllers\RoleController::class, 'update'])->name('role.update');
 
+//    attaching permission
+    Route::put('/roles/{role}/permissions/{permission}/attach', [\App\Http\Controllers\RoleController::class, 'attach'])->name('role.permission.attach');
+
+//    detaching permission
+    Route::put('/roles/{role}/permissions/{permission}/detach', [\App\Http\Controllers\RoleController::class, 'detach'])->name('role.permission.detach');
+
 });
 

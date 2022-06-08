@@ -4,6 +4,14 @@
             <div class="alert alert-success">
                 {{ session('role-clean') }}
             </div>
+        @elseif(session('role-permission-attached'))
+            <div class="alert alert-success">
+                {{ session('role-permission-attached') }}
+            </div>
+        @elseif(session('role-permission-detached'))
+            <div class="alert alert-success">
+                {{ session('role-permission-detached') }}
+            </div>
         @endif
         <h1>Edit role: {{ $role->name }}</h1>
 
@@ -56,8 +64,20 @@
                                             <td>{{ $permission->slug }}</td>
                                             <td>{{ $permission->created_at->diffForHumans() }}</td>
                                             <td>{{ $permission->updated_at->diffForHumans() }}</td>
-                                            <td><button class="btn btn-primary" @if($role->hasPermission($permission->slug)) disabled @endif>Attach</button></td>
-                                            <td><button class="btn btn-danger" @if(!$role->hasPermission($permission->slug)) disabled @endif>Detach</button></td>
+                                            <td>
+                                                <form method="post" action="{{ route('role.permission.attach', [$role, $permission]) }}" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button type="submit" class="btn btn-primary" @if($role->hasPermission($permission->slug)) disabled @endif>Attach</button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form method="post" action="{{route('role.permission.detach', [$role, $permission])}}" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button type="submit" class="btn btn-danger" @if(!$role->hasPermission($permission->slug)) disabled @endif>Detach</button>
+                                                </form>
+                                            </td>
                                             <td><button class="btn btn-outline-danger">Delete</button></td>
                                         </tr>
                                     @endforeach

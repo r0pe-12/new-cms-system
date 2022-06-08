@@ -71,4 +71,28 @@ class RoleController extends Controller
         return back();
     }
 
+//    attaching roles
+    public function attach(Role $role, Permission $permission){
+        # code
+        if ($role->hasPermission($permission->slug)){
+            session()->flash('role-permission-attached', 'Permission ' . $permission->name . ' ALREADY attached to role ' . $role->name);
+            return back();
+        }
+        $role->permissions()->attach($permission);
+        session()->flash('role-permission-attached', 'Permission ' . $permission->name . ' successfully attached to role ' . $role->name);
+        return back();
+    }
+
+//    detaching roles
+    public function detach(Role $role, Permission $permission){
+        # code
+        if (!$role->hasPermission($permission->slug)){
+            session()->flash('role-permission-detached', 'Permission ' . $permission->name . ' ALREADY detached from role ' . $role->name);
+            return back();
+        }
+        $role->permissions()->detach($permission);
+        session()->flash('role-permission-detached', 'Permission ' . $permission->name . ' successfully detached from role ' . $role->name);
+        return back();
+    }
+
 }
