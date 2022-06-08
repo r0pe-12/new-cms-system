@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,8 +36,11 @@ class RoleController extends Controller
 
 //    showing role edit form
     public function edit(Role $role){
+
         # code
-        return view('admin.roles.edit', compact('role'));
+        $permissions = Permission::paginate(10);
+//        $permissions = Permission::all();
+        return view('admin.roles.edit', compact('role', 'permissions'));
     }
 
 //    updating a role

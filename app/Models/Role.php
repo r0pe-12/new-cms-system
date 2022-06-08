@@ -20,4 +20,14 @@ class Role extends Model
         # code
         return $this->belongsToMany(User::class);
     }
+
+    public function hasPermission($permission_name){
+        # code
+        foreach ($this->permissions as $permission) {
+            if (strtolower($permission_name) === strtolower($permission->slug)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

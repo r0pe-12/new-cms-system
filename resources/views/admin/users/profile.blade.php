@@ -18,13 +18,13 @@
             </div>
         @endif
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col">
                 <form method="post" action="{{route('user.profile.update', $user)}}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
                     <div class="mb-4">
-                        <img src="{{$user->avatar}}" class="img-profile rounded-3">
+                        <img src="{{$user->avatar}}" class="img-profile rounded-3" width="100%">
                     </div>
 
                     <div class="form-group">
@@ -77,10 +77,8 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-sm-12">
+            <div class="col">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">Roles</h6>

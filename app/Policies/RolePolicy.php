@@ -19,7 +19,8 @@ class RolePolicy
     public function modAdmin(User $user, Role $role)
     {
         //
-        return $role->slug !== 'admin';
+//        return $role->slug !== 'admin';
+        return true;
     }
 
     /**

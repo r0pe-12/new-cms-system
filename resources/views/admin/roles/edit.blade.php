@@ -21,5 +21,72 @@
                 </form>
             </div>
         </div>
+        <div class="row">
+            @if($permissions->isNotEmpty())
+                <div class="col">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Permissions</h6>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th>Options</th>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Slug</th>
+                                    <th>Created At</th>
+                                    <th>Updated At</th>
+                                    <th>Attach</th>
+                                    <th>Detach</th>
+                                    <th>DELETE</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($permissions as $permission)
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" @if($role->hasPermission($permission->slug)) checked @endif>
+                                            </td>
+                                            <td>{{ $permission->id }}</td>
+                                            <td>{{ $permission->name }}</td>
+                                            <td>{{ $permission->slug }}</td>
+                                            <td>{{ $permission->created_at->diffForHumans() }}</td>
+                                            <td>{{ $permission->updated_at->diffForHumans() }}</td>
+                                            <td><button class="btn btn-primary" @if($role->hasPermission($permission->slug)) disabled @endif>Attach</button></td>
+                                            <td><button class="btn btn-danger" @if(!$role->hasPermission($permission->slug)) disabled @endif>Detach</button></td>
+                                            <td><button class="btn btn-outline-danger">Delete</button></td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Options</th>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Slug</th>
+                                    <th>Created At</th>
+                                    <th>Updated At</th>
+                                    <td>Attach</td>
+                                    <th>Detach</th>
+                                    <th>DELETE</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+{{--                laravel paginator--}}
+                <div class="d-flex">
+                    <div class="mx-auto">
+                        {{$permissions->links()}}
+                    </div>
+                </div>
+            </div>
+            @endif
+        </div>
     @endsection
 </x-admin-master>
