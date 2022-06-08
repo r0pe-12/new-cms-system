@@ -7,7 +7,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Authorization</h6>
             <a class="collapse-item" href="{{route('role.index')}}">Roles</a>
-            <a class="collapse-item" href="{{route('post.index')}}">Permissions</a>
+            <a class="collapse-item" href="{{route('permission.index')}}">Permissions</a>
         </div>
     </div>
 </li>
