@@ -59,6 +59,7 @@
                                         <a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal-{{ $user->id }}">DELETE</a>
                                     </td>
                                 </tr>
+
                                 <div class="modal fade" id="deleteModal-{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -80,6 +81,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             @endforeach
                             <tfoot>
